@@ -8,17 +8,31 @@
         <router-view></router-view>
       </el-main>
 
-      <el-footer>f</el-footer>
+      <el-footer>
+        <button @click="send">点击发送请求</button>
+      </el-footer>
     </el-container>
   </div>
 </template>
 
 <script>
   import NavBar from 'components/content/NavBar'
+
+  import instance from './network/request'
   export default {
     name: 'App',
     components: {
       NavBar
+    },
+    methods: {
+      send() {
+        console.log('1');
+        instance({
+          url: '/selectUserById/1'
+        }).then(res => {
+          console.log(res);
+        })
+      }
     }
   }
 </script>
