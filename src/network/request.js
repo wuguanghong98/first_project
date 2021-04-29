@@ -1,22 +1,22 @@
 import axios from 'axios'
 
 //创建实例
-const instance = axios.create({
+const request = axios.create({
   baseURL: 'http://localhost/api',
-  timeout: 4000
+  timeout: 20000
 })
 //请求拦截
-instance.interceptors.request.use(config => {
+request.interceptors.request.use(config => {
   return config
 },error => {
   console.log(error);
 })
 //响应拦截
-instance.interceptors.response.use(responce => {
-  return responce.data
+request.interceptors.response.use(response => {
+  return response.data
 },error => {
   console.log(error);
 })
 
-export default instance
+export default request
 

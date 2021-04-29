@@ -1,65 +1,63 @@
 <template>
   <div class="essay-div">
-      <div v-for="(essay, index) in essays" :key="index">
-        <div v-if="!essay.img">
+        <div v-if="!information.image">
           <h1 class="title">
-            {{essay.title}}
+            {{information.title}}
           </h1>
           <div class="content">
-            {{essay.content}}
+            {{information.synopsis}}
           </div>
           <p class="time">
-            发表于 {{essay.time}}
+            发表于 {{information.publicationdate | filterTime}}
           </p>
         </div>
         <div v-else class="have-img">
-          <img :src="essay.img" alt="">
+          <img :src="information.image" alt="">
           <div class="img-content">
             <h1 class="title">
-              {{essay.title}}
+              {{information.title}}
             </h1>
               <div class="content">
-              {{essay.content}}
+              {{information.synopsis}}
             </div>
             <p class="time">
-              发表于 {{essay.time}}
+              发表于 {{information.publicationdate | filterTime}}
             </p>
           </div>
-
-        </div>
       </div>
   </div>
 </template>
 
 <script>
+
+  import {formatTime} from 'common/utile'
   export default {
     name: "EssayDesc",
-    data() {
-      return {
-        essays: [
-          {
-            title: 'UFO科创李杨：创业的意义在于不断探索未知',
-            img: '',
-            content: `UFO科创李杨：创业的意义在于不断探索未知中国创新创业网新闻中国采编网中国新闻采编网谋定研究中国智库网经信研究国研智库国
-        断探索未知中国创新创业网新闻中国采编网中国新闻采编网谋定研究中国智库网经信研究国研智库国义在于不断探索未知中国创新创业网新闻中国采编网中国新闻采编网谋定研究中国智库网经信研究国研智库国
-        断探索未知中国创新创业网新闻中国采编网中国新闻采编网谋定研究中国智库网经信研究国研智库国`,
-            time: '2020-12-25'
-          },
-          {
-            title: 'UFO科创李杨：创业的意义在于不断探索未知有图片',
-            img: require('assets/img/information2.jpg'),
-            content: `UFO科创李杨：创业的意义在于不断探索未知中国创新创业网新闻中国采编网中国新闻采编网谋定研究中国智库网经信研究国研智库国
-        断探索未知中国创新创业网新闻中国采编网中国新闻采编网谋定研究中国智库网经信研究国研智库国义在于不断探索未知中国创新创业网新闻中国采编网中国新闻采编网谋定研究中国智库网经信研究国研智库国
-        断探索未知中国创新创业网新闻中国采编网中国新闻采编网谋定研究中国智库网经信研究国研智库国`,
-            time: '2020-12-25'
-          }
-        ]
+    props: {
+      information: {
+        type: Object,
+        default() {
+          return null;
+        }
+      }
+    },
+    mounted() {
+      // console.log(this.information);
+    },
+    filters: {
+      filterTime(value) {
+        return formatTime(value,'Y年M月D日 h:m:s')
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  .time {
+    font-size: 15px;
+    color: #777777;
+    width: 100%;
+  }
   .essay-div {
     height: 200px;
     padding: 16px 0;
@@ -98,11 +96,7 @@
     .have-img {
       display: flex;
       width: 100%;
-      .time {
-        font-size: 15px;
-        color: #777777;
-        width: 100%;
-      }
+
       img {
         height: 180px;
         width: 250px;

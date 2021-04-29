@@ -1,31 +1,40 @@
 <template>
-  <div class="recommend">
+  <div class="recommend" v-if="Object.keys(informationRecommends) != ''">
     <div class="recommend-title">
       <i class="el-icon-s-data"></i>
       今日推荐
     </div>
-    <div v-for="(title, index) in titles" :key="index" class="title">
+    <div v-for="(information, index) in informationRecommends" :key="index" class="title">
       <div class="index">{{index + 1}}</div>
-      <div class="title-content">{{title}}</div>
+      <div class="title-content">{{information.title}}</div>
     </div>
   </div>
 </template>
 
 <script>
+
+  import {getInfoRecommend} from 'api/information'
   export default {
     name: "Recommend",
     data() {
       return {
-        titles: ['29名选手参加“时代新人说”演讲大赛',
-          '中国临安狮子山攀岩节暨浙江省首届水上攀石大赛成功举办',
-          '29名选手参加“时代新人说”演讲大赛',
-          '中国临安狮子山攀岩节暨浙江省首届水上攀石大赛成功举办暨浙江省首届水上攀石大赛成功举',
-          '29名选手参加“时代新人说”演讲大赛',
-          '中国临安狮子山攀岩节暨浙江省首届水上攀石大赛成功举办',
-          '29名选手参加“时代新人说”演讲大赛',
-          '中国临安狮子山攀岩节暨浙江省首届水上攀石大赛成功举办',
-          '29名选手参加“时代新人说”演讲大赛',
-          '中国临安狮子山攀岩节暨浙江省首届水上攀石大赛成功举办']
+        titles: []
+      }
+    },
+    computed: {
+      informationRecommends() {
+        return this.titles
+      }
+    },
+    mounted() {
+      this.getData()
+    },
+    methods: {
+      getData() {
+        getInfoRecommend().then(res => {
+          this.titles = res
+          // console.log(this.informationRecommends);
+        })
       }
     }
   }
