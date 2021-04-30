@@ -5,7 +5,10 @@
         <nav-bar/>
       </el-header>
       <el-main>
-        <router-view></router-view>
+        <keep-alive exclude="['InformationList', 'Detail']">
+          <router-view></router-view>
+        </keep-alive>
+
       </el-main>
 
       <el-footer>

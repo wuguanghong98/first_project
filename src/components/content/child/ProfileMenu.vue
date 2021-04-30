@@ -32,8 +32,8 @@
     },
     updated() {
 
-      console.log(this.$t('profileMenu.peCenter'));
-      console.log('menus===' + this.menus[0]);
+      // console.log(this.$t('profileMenu.peCenter'));
+      // console.log('menus===' + this.menus[0]);
     },
     methods: {
       ShowProfile() {

@@ -9,12 +9,13 @@ export function getAllInformation() {
 }
 
 //根据当前页数和每页数量获取首页部分资讯列表
-export function getSomeInfoByPage(page = 1, size = 6) {
+export function getSomeInfoByPage(page = 1, size = 6, type = 0) {
   return request({
     url: '/getSomeInforByPage',
     params: {
       page,
-      size
+      size,
+      type
     },
     methods: 'get'
   })
@@ -32,6 +33,14 @@ export function getInfoRecommend() {
 export function getInfoByType(typeId) {
   return request({
     url: '/getInformationByType/' + typeId,
+    methods: 'get'
+  })
+}
+
+//根据资讯id获取资讯的信息
+export function getInfoById(id) {
+  return request({
+    url: '/getInfoById/' + id ,
     methods: 'get'
   })
 }

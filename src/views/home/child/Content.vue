@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import Essay from './Essay'
+  import Essay from 'views/components/Essay'
 
   import Recommend from 'components/content/Recommend'
 

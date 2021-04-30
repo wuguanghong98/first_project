@@ -2,18 +2,40 @@
   <div class="navbar">
     <common-nav-bar height="57px" :titleSpan="titleSpan" :profile-offset="profileOffset" :profileSpan="profileSpan">
       <div slot="logo">
-        <img src="~assets/logo3.jpg" alt="去首页" @click="$router.push('/')" width="85px" height="48px">
+        <img src="~assets/logo3.jpg" alt="去首页"
+             @click="logoImgClick"
+             width="85px"
+             height="48px"
+             style="cursor:pointer;">
       </div>
-      <div slot="title" class="title-div">
-        <div v-for="(title, index) in titles" :key="index" class="title-item" @click="jumpToInfoList(index)">{{title}}</div>
+      <div slot="title" class="title-div" >
+        <div v-for="(title, index) in titles"
+             :key="index" class="title-item"
+             @click="jumpToInfoList(title.url, index)"
+             :class="{active: currentIndex == index}">
+          {{title.name}}
+        </div>
       </div>
       <div slot="search">
-        <el-input v-model="SearchKey" :placeholder="$t('header.searchInputPlaceholder')" size="small" class="search-input" @keyup.enter.native="searchEssay">
-          <i slot="suffix" class="el-input__icon el-icon-search" @click="searchEssay"></i>
+        <el-input v-model="SearchKey"
+                  :placeholder="$t('header.searchInputPlaceholder')"
+                  size="small"
+                  class="search-input"
+                  @keyup.enter.native="searchEssay">
+          <i slot="suffix"
+             class="el-input__icon el-icon-search"
+             @click="searchEssay"></i>
         </el-input>
       </div>
-      <div slot="profile"  @mousemove="showProfile" @mouseout="hiddenProfile" class="profile">
-        <img src="~assets/img/portrait/touxiang.jpg" alt="" width="85px" height="48px" class="portrait">
+      <div slot="profile"
+           @mousemove="showProfile"
+           @mouseout="hiddenProfile"
+           class="profile">
+        <img src="~assets/img/portrait/touxiang.jpg"
+             alt=""
+             width="85px"
+             height="48px"
+             class="portrait">
         <i class="el-icon-caret-bottom img-right-icon" v-show="!isShowProfile"></i>
         <i class="el-icon-caret-top img-right-icon" v-show="isShowProfile"></i>
       </div>
@@ -43,20 +65,37 @@
         profileSpan: 2,
         SearchKey: '',
         isShowProfile: false,
-        showChangLang: true
+        showChangLang: true,
+        currentIndex: 0
       }
     },
     computed: {
       titles() {
         return [
-            this.$t('header.home'),
-          this.$t('header.newsFlash'),
-          this.$t('header.enInformation'),
-          this.$t('header.enPolicy')
+          {
+            name: this.$t('header.home'),
+            url: '/'
+          },
+          {
+            name: this.$t('header.newsFlash'),
+            url: '/newsFlash'
+          },
+          {
+            name: this.$t('header.enInformation'),
+            url: '/enInformation'
+          },
+          {
+            name: this.$t('header.enPolicy'),
+            url: '/enPolicy'
+          }
         ]
       }
     },
     methods: {
+      logoImgClick() {
+        this.currentIndex = 0
+        this.$router.push('/')
+      },
       showProfile() {
         this.isShowProfile = true
       },
@@ -66,16 +105,16 @@
       searchEssay() {
         console.log("searchEssay");
       },
-      jumpToInfoList(index) {
+      jumpToInfoList(url, index) {
+        this.currentIndex = index
         if(index == 0) {
           this.$router.push('/')
         }else {
           // this.$router.push('/informationList/' + index)
           this.$router.push({
-            path: '/informationList',
+            path: url,
             query: {
-              id: index,
-              name: '张三'
+              type: index + 3,
             }
           })
         }
@@ -90,6 +129,10 @@
 </script>
 
 <style lang="scss" scoped>
+  .active {
+    color: #ECF5FF !important
+  }
+
   .navbar {
     .title-div {
       display: flex;

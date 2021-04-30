@@ -1,5 +1,5 @@
 <template>
-  <div class="essay-div">
+  <div class="essay-div" @click="jumpDetail">
         <div v-if="!information.image">
           <h1 class="title">
             {{information.title}}
@@ -55,6 +55,11 @@
       filterTime(value) {
         return formatTime(value,  'Y年M月D日 h:m:s')
       }
+    },
+    methods: {
+      jumpDetail() {
+        this.$router.push('/detail/' + this.information.id)
+      }
     }
   }
 </script>
@@ -69,6 +74,7 @@
     height: 200px;
     padding: 16px 0;
     border-bottom: #B1B1B1 solid 1px;
+    cursor: pointer;
 
     .title {
       height: 45px;
