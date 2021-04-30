@@ -39,15 +39,24 @@
 
 
 <style lang="scss">
+  body {
+    margin: 0;
+  }
   #app {
     font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
     padding: 0;
     margin: 0;
     .header {
       background-color: $backColor;
+      height: 60px;
+      position: fixed;
+      z-index: 99;
+      width: 100%;
     }
     .el-main {
       padding: 2px 20px;
+      margin-top: 60px;
+      /*height: auto;*/
     }
   }
 </style>

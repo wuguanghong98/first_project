@@ -2,13 +2,13 @@
   <div class="navbar">
     <common-nav-bar height="57px" :titleSpan="titleSpan" :profile-offset="profileOffset" :profileSpan="profileSpan">
       <div slot="logo">
-        <img src="~assets/logo3.jpg" alt="" width="85px" height="48px">
+        <img src="~assets/logo3.jpg" alt="去首页" @click="$router.push('/')" width="85px" height="48px">
       </div>
       <div slot="title" class="title-div">
-        <div v-for="(title, index) in titles" :key="index" class="title-item">{{title}}</div>
+        <div v-for="(title, index) in titles" :key="index" class="title-item" @click="jumpToInfoList(index)">{{title}}</div>
       </div>
       <div slot="search">
-        <el-input v-model="SearchKey" placeholder="搜索文章" size="small" class="search-input" @keyup.enter.native="searchEssay">
+        <el-input v-model="SearchKey" :placeholder="$t('header.searchInputPlaceholder')" size="small" class="search-input" @keyup.enter.native="searchEssay">
           <i slot="suffix" class="el-input__icon el-icon-search" @click="searchEssay"></i>
         </el-input>
       </div>
@@ -16,6 +16,10 @@
         <img src="~assets/img/portrait/touxiang.jpg" alt="" width="85px" height="48px" class="portrait">
         <i class="el-icon-caret-bottom img-right-icon" v-show="!isShowProfile"></i>
         <i class="el-icon-caret-top img-right-icon" v-show="isShowProfile"></i>
+      </div>
+      <div slot="lang" class="lang">
+        <span v-if="showChangLang" @click="changeLang('en')">切换成英语</span>
+        <span v-else @click="changeLang('zh')">切换成中文</span>
       </div>
     </common-nav-bar>
     <profile-menu v-show="isShowProfile"/>
@@ -38,12 +42,18 @@
         profileOffset: 1,
         profileSpan: 2,
         SearchKey: '',
-        isShowProfile: false
+        isShowProfile: false,
+        showChangLang: true
       }
     },
     computed: {
       titles() {
-        return ['首页', '新闻快讯', '创业资讯', '创业政策']
+        return [
+            this.$t('header.home'),
+          this.$t('header.newsFlash'),
+          this.$t('header.enInformation'),
+          this.$t('header.enPolicy')
+        ]
       }
     },
     methods: {
@@ -55,6 +65,25 @@
       },
       searchEssay() {
         console.log("searchEssay");
+      },
+      jumpToInfoList(index) {
+        if(index == 0) {
+          this.$router.push('/')
+        }else {
+          // this.$router.push('/informationList/' + index)
+          this.$router.push({
+            path: '/informationList',
+            query: {
+              id: index,
+              name: '张三'
+            }
+          })
+        }
+
+      },
+      changeLang(val) {
+        this.$i18n.locale = val
+        this.showChangLang = !this.showChangLang
       }
     }
   }
@@ -66,9 +95,10 @@
       display: flex;
       justify-content: space-between;
       .title-item {
-        /*flex: 1;*/
+        flex: 1;
         padding: 20px 0;
         color: $color;
+        cursor:pointer;
       }
     }
     .search-input {
@@ -85,6 +115,13 @@
         border-radius: 50%;
         margin: 15px 0
       }
+    }
+    .lang {
+      padding: 22px 0;
+      color: $color;
+      font-size: 14px;
+      margin-left: -23px;
+      cursor:pointer;
     }
 
     .img-right-icon {

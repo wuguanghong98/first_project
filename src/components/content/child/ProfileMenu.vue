@@ -2,7 +2,7 @@
   <el-row>
     <el-col :span="2" :offset="20">
       <div class="profile-menu" @mousemove="ShowProfile" @mouseout="hiddenProfile">
-        <div v-for="(menu, index) in menus" class="menu">{{menu}}</div>
+        <div v-for="(menu, index) in menus" class="menu" :key="index">{{menu}}</div>
       </div>
     </el-col>
   </el-row>
@@ -13,14 +13,27 @@
   export default {
     name: "ProfileMenu",
     data() {
-      return {
-        menus: ['个人中心', '发布资讯', '修改信息', '修改密码', '退出登录']
-      }
+      return {}
     },
+    computed: {
+      menus(){
+        return [
+          this.$t('profileMenu.peCenter'),
+          this.$t('profileMenu.puInformation'),
+          this.$t('profileMenu.moInformation'),
+          this.$t('profileMenu.chPassword'),
+          this.$t('profileMenu.logOut')
+        ]
+      }
 
+    },
     mounted() {
+      // console.log(this.$parent.isShowProfile);
+    },
+    updated() {
 
-      console.log(this.$parent.isShowProfile);
+      console.log(this.$t('profileMenu.peCenter'));
+      console.log('menus===' + this.menus[0]);
     },
     methods: {
       ShowProfile() {

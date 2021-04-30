@@ -21,7 +21,7 @@
               {{information.synopsis}}
             </div>
             <p class="time">
-              发表于 {{information.publicationdate | filterTime}}
+              {{$t('essay.publishedIn')}} {{information.publicationdate | filterTime}}
             </p>
           </div>
       </div>
@@ -41,12 +41,19 @@
         }
       }
     },
-    mounted() {
+    computed: {
+      format() {
+        // return this.$t('essay.timeFormat')
+        // return this.$t('essay.timeFormat')
+      }
+    },
+    updated() {
       // console.log(this.information);
+      // console.log(this.format);
     },
     filters: {
       filterTime(value) {
-        return formatTime(value,'Y年M月D日 h:m:s')
+        return formatTime(value,  'Y年M月D日 h:m:s')
       }
     }
   }

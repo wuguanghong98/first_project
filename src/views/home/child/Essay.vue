@@ -7,16 +7,19 @@
             <!--:total="total"-->
             <!--@current-change="query">-->
     <!--</el-pagination>-->
-    <el-pagination
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="pageSizes"
-            :page-size="pageInfo.size"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="pageInfo.total">
-    </el-pagination>
+    <div class="paging">
+      <el-pagination
+              background
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage"
+              :page-sizes="pageSizes"
+              :page-size="pageInfo.size"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="pageInfo.total">
+      </el-pagination>
+    </div>
+
   </div>
 </template>
 
@@ -63,6 +66,9 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .paging {
+    padding: 25px 0;
+  }
 
 </style>

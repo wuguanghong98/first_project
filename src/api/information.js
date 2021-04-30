@@ -8,7 +8,7 @@ export function getAllInformation() {
   })
 }
 
-//根据当前页数获取首页部分资讯列表
+//根据当前页数和每页数量获取首页部分资讯列表
 export function getSomeInfoByPage(page = 1, size = 6) {
   return request({
     url: '/getSomeInforByPage',

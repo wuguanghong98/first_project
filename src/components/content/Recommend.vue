@@ -2,7 +2,7 @@
   <div class="recommend" v-if="Object.keys(informationRecommends) != ''">
     <div class="recommend-title">
       <i class="el-icon-s-data"></i>
-      今日推荐
+      {{$t('content.toRecommendation')}}
     </div>
     <div v-for="(information, index) in informationRecommends" :key="index" class="title">
       <div class="index">{{index + 1}}</div>
@@ -34,6 +34,9 @@
         getInfoRecommend().then(res => {
           this.titles = res
           // console.log(this.informationRecommends);
+        }).catch(err => {
+          this.$message("获取推荐数据超时，请重试！")
+          console.log(err);
         })
       }
     }

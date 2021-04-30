@@ -1,4 +1,5 @@
 import Home from 'views/home/Home'
+import InformationList from 'views/informationlist/InformationList'
 
 export default [
   {
@@ -8,5 +9,9 @@ export default [
   {
     path: '/home',
     component: Home
+  },
+  {
+    path: '/informationList',
+    component: InformationList
   }
 ]

@@ -5,6 +5,7 @@
       <el-col :span="titleSpanV"><slot name="title">title</slot></el-col>
       <el-col :span="6" :offset="searchOffsetV"><slot name="search">search</slot></el-col>
       <el-col :span="profileSpanV" :offset="profileOffset"><slot name="profile">profile</slot></el-col>
+      <el-col :span="1"><slot name="lang">切换语言</slot></el-col>
     </el-row>
   </div>
 </template>
