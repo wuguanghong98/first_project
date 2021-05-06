@@ -1,9 +1,10 @@
 <template>
   <div class="information-list" :key="currentType" v-if="Object.keys(pageInfo) != ''">
     <content-layout>
-      <div slot="left"><essay :pageInfo="pageInfo"
-                              @currentChange="currentChange"
-                              @sizeChange="sizeChange"/>
+      <div slot="left">
+        <essay :pageInfo="pageInfo"
+               @currentChange="currentChange"
+               @sizeChange="sizeChange"/>
       </div>
       <div slot="right">
         <recommend/>
@@ -72,6 +73,6 @@
 
 <style scoped>
   .information-list {
-    padding-top: 25px;
+    padding-top: 15px;
   }
 </style>

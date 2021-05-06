@@ -12,7 +12,7 @@
       </el-main>
 
       <el-footer>
-        <button @click="send">点击发送请求</button>
+        <copyright/>
       </el-footer>
     </el-container>
   </div>
@@ -21,11 +21,14 @@
 <script>
   import NavBar from 'components/content/NavBar'
 
+  import Copyright from 'views/copyright/Copyright'
+
   import instance from './network/request'
   export default {
     name: 'App',
     components: {
-      NavBar
+      NavBar,
+      Copyright
     },
     methods: {
       send() {

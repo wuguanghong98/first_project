@@ -4,7 +4,7 @@
       <el-col :span="13" :offset="2">
         <slot name="left"></slot>
       </el-col>
-      <el-col :span="7">
+      <el-col :span="7" :offset="1">
         <slot name="right"></slot>
       </el-col>
     </el-row>

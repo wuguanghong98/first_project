@@ -1,8 +1,11 @@
 <template>
-  <div class="information-detail">
+  <div class="information-detail" :key="information.id">
     <content-layout>
       <div slot="left">
-        {{information}}
+        <!--{{information}}-->
+        <Title :information="information"/>
+        <div v-html="information.content" class="information-content">
+        </div>
       </div>
       <div slot="right">
         <recommend/>
@@ -12,14 +15,19 @@
 </template>
 
 <script>
+  import Title from './child/Title'
+
 
   import {getInfoById} from 'api/information'
 
   import ContentLayout from 'components/content/ContentLayout'
   import Recommend from 'components/content/Recommend'
+
+
   export default {
     name: "Detail",
     components: {
+      Title,
       ContentLayout,
       Recommend
     },
@@ -28,6 +36,7 @@
         information: {}
       }
     },
+
     mounted() {
       this.getData()
     },
@@ -54,5 +63,11 @@
 <style lang="scss" scoped>
   .information-detail {
     padding-top: 25px;
+
+    .information-content {
+      padding: 20px 0;
+      /*border-bottom: #e0d7d7 solid 1px;*/
+    }
+
   }
 </style>
