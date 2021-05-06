@@ -48,7 +48,7 @@
           this.pageInfo = res
         }).catch(err => {
           console.log(err);
-          this.$message('获取资讯信息失败，请重试！')
+          this.$message('获取资讯信息列表失败，请重试！')
         })
       },
       currentChange(val, size) {

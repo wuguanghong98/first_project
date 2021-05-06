@@ -9,26 +9,41 @@ export default [
   {
     path: '/home',
     component: Home,
-    meta: '首页'
+    meta: {
+      title: '首页',
+      keepAlive: true
+    }
   },
   {
     path: '/newsFlash',
     component: () => import('views/informationlist/InformationList'),
-    meta: '新闻政策'
+    meta: {
+      title: '新闻政策',
+      keepAlive: false
+    }
   },
   {
     path: '/enInformation',
     component: () => import('views/informationlist/InformationList'),
-    meta: '创业资讯'
+    meta: {
+      title: '创业资讯',
+      keepAlive: false
+    }
   },
   {
     path: '/enPolicy',
     component: () => import('views/informationlist/InformationList'),
-    meta: '创业政策'
+    meta: {
+      title: '创业政策',
+      keepAlive: false
+    }
   },
   {
     path: '/detail/:id',
     component: () => import('views/detail/Detail'),
-    meta: '资讯详情'
+    meta: {
+      title: '资讯详情',
+      keepAlive: false
+    }
   }
 ]

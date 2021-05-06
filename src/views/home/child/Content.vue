@@ -95,7 +95,7 @@
           // console.log(this.homePageInfo);
         }).catch(err => {
           console.log(err);
-          this.$message("获取资讯数据超时，请重试！")
+          this.$message("获取资讯数据列表超时，请重试！")
         })
       },
       backTop() {

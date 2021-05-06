@@ -36,7 +36,7 @@
       }
     },
     mounted() {
-      console.log('d');
+      // console.log('d');
     }
   }
 </script>

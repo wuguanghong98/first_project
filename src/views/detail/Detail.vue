@@ -47,15 +47,21 @@
       getInfo(id) {
         getInfoById(id).then(res => {
           this.information = res
-          console.log(this.information);
+          // console.log(this.information);
         }).catch(err => {
           console.log(err);
           this.$message('获取资讯详情信息错误，请重试！')
         })
       }
     },
+    watch: {
+      $route(newV,oldV) {
+        // console.log(newV);
+        this.getInfo(newV.params.id)
+      }
+    },
     destroyed() {
-      console.log('d');
+      // console.log('d');
     }
   }
 </script>
@@ -67,6 +73,10 @@
     .information-content {
       padding: 20px 0;
       /*border-bottom: #e0d7d7 solid 1px;*/
+      font-size: 16px;
+      line-height: 28px;
+      color: #333;
+      text-indent: 2em;
     }
 
   }

@@ -4,7 +4,7 @@
       <i class="el-icon-s-data"></i>
       {{$t('content.toRecommendation')}}
     </div>
-    <div v-for="(information, index) in informationRecommends" :key="index" class="title">
+    <div v-for="(information, index) in informationRecommends" :key="index" class="title" @click="jumpDetail(information.id)">
       <div class="index">{{index + 1}}</div>
       <div class="title-content">{{information.title}}</div>
     </div>
@@ -35,9 +35,12 @@
           this.titles = res
           // console.log(this.informationRecommends);
         }).catch(err => {
-          this.$message("获取推荐数据超时，请重试！")
+          this.$message("获取推荐信息列表超时，请重试！")
           console.log(err);
         })
+      },
+      jumpDetail(id) {
+        this.$router.push('/detail/' + id)
       }
     }
   }
@@ -53,6 +56,7 @@
       }
     }
     .title {
+      cursor: pointer;
       height: 110px;
       display: flex;
       align-items: center;

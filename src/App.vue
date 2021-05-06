@@ -5,10 +5,17 @@
         <nav-bar/>
       </el-header>
       <el-main>
-        <keep-alive exclude="['InformationList', 'Detail']">
-          <router-view></router-view>
+        <!--<keep-alive exclude="InformationList, Detail">-->
+          <!--<router-view></router-view>-->
+        <!--</keep-alive>-->
+
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive">
+          </router-view>
         </keep-alive>
 
+        <router-view v-if="!$route.meta.keepAlive">
+        </router-view>
       </el-main>
 
       <el-footer>
