@@ -30,6 +30,7 @@
       <div slot="profile"
            @mousemove="showProfile"
            @mouseout="hiddenProfile"
+           v-if="isLogin"
            class="profile">
         <img src="~assets/img/portrait/touxiang.jpg"
              alt=""
@@ -38,6 +39,9 @@
              class="portrait">
         <i class="el-icon-caret-bottom img-right-icon" v-show="!isShowProfile"></i>
         <i class="el-icon-caret-top img-right-icon" v-show="isShowProfile"></i>
+      </div>
+      <div slot="profile" v-else class="login" @click="jumpLogin">
+        登录 | 注册
       </div>
       <div slot="lang" class="lang">
         <span v-if="showChangLang" @click="changeLang('en')">切换成英语</span>
@@ -52,6 +56,7 @@
   import ProfileMenu from './child/ProfileMenu'
 
   import CommonNavBar from 'components/common/NavBar'
+
   export default {
     name: "NavBar",
     components: {
@@ -66,7 +71,7 @@
         SearchKey: '',
         isShowProfile: false,
         showChangLang: true,
-        currentIndex: 0
+        currentIndex: 0,
       }
     },
     computed: {
@@ -89,6 +94,9 @@
             url: '/enPolicy'
           }
         ]
+      },
+      isLogin() {
+        return this.$store.state.isLogin
       }
     },
     methods: {
@@ -123,7 +131,13 @@
       changeLang(val) {
         this.$i18n.locale = val
         this.showChangLang = !this.showChangLang
+      },
+      jumpLogin() {
+        this.$router.push('/login')
       }
+    },
+    mounted() {
+      console.log(this.isLogin);
     }
   }
 </script>
@@ -158,6 +172,12 @@
         border-radius: 50%;
         margin: 15px 0
       }
+    }
+    .login {
+      padding: 22px 0;
+      font-size: 15px;
+      cursor: pointer;
+      color: #303133;
     }
     .lang {
       padding: 22px 0;

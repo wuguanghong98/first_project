@@ -23,5 +23,12 @@ export default {
   essay: {
     publishedIn: 'Published in',
     timeFormat: 'Y year M month D day'
+  },
+  path: {
+    home: 'Home',
+    detail: 'Detail'
+  },
+  button: {
+    collect: 'Collect'
   }
 }

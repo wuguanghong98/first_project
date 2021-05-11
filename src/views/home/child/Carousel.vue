@@ -1,5 +1,5 @@
 <template>
-  <el-row type="flex" justify="center" style="height: 395px">
+  <el-row type="flex" justify="center"  class="carousel">
     <el-col :span="20">
       <div class="carousel-div">
         <el-carousel height="395px">
@@ -25,8 +25,12 @@
 </script>
 
 <style lang="scss" scoped>
-  .carousel-div {
-    height: 320px;
-    width: 100%;
+  .carousel {
+    height: 395px;
+    .carousel-div {
+      height: 320px;
+      width: 100%;
+    }
   }
+
 </style>

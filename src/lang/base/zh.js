@@ -23,5 +23,12 @@ export default {
   essay: {
     publishedIn: '发表于',
     // timeFormat: 'Y年M月D日'
+  },
+  path: {
+    home: '首页',
+    detail: '详情'
+  },
+  button: {
+    collect: '收藏'
   }
 }

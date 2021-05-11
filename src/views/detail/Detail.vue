@@ -74,7 +74,7 @@
       padding: 20px 0;
       /*border-bottom: #e0d7d7 solid 1px;*/
       font-size: 16px;
-      line-height: 28px;
+      line-height: 40px;
       color: #333;
       text-indent: 2em;
     }

@@ -2,10 +2,10 @@
   <div class="title-div">
     <div class="title-top">
       <el-breadcrumb separator-class="el-icon-arrow-right" class="top-left">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/' }">详情</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/' }">{{$t('path.home')}}</el-breadcrumb-item>
+        <el-breadcrumb-item >{{$t('path.detail')}}</el-breadcrumb-item>
       </el-breadcrumb>
-      <el-button type="warning">收藏</el-button>
+      <el-button type="warning">{{$t('button.collect')}}</el-button>
     </div>
     <div class="title-content">
       {{information.title}}
